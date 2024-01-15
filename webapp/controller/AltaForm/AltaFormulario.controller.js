@@ -13,7 +13,8 @@ sap.ui.define([
 	var sModelMain = "Model_MainAltaForm";
 	return Controller.extend("simplot.portalsprd.controller.AltaForm.AltaFormulario", {
 		
-		 onInit: function(){		
+		 onInit: function(){
+            console.log("2024");
 		},
 
         onAfterRendering: function(){
