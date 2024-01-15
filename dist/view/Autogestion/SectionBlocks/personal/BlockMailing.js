@@ -1,0 +1,1 @@
+sap.ui.define(["sap/uxap/BlockBase"],function(e){"use strict";var t=e.extend("simplot.portalsprd.view.Autogestion.SectionBlocks.personal.BlockMailing",{metadata:{}});return t},true);

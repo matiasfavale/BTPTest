@@ -1,0 +1,160 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+		   xmlns="sap.uxap"
+		   xmlns:layout="sap.ui.layout"
+		   xmlns:m="sap.m"
+		   xmlns:datos="simplot.portalsprd.view.Autogestion.SectionBlocks.datosBasicos"
+		   xmlns:direccion="simplot.portalsprd.view.Autogestion.SectionBlocks.direccion"
+		   xmlns:cuentas="simplot.portalsprd.view.Autogestion.SectionBlocks.cuentas"
+		   xmlns:compras="simplot.portalsprd.view.Autogestion.SectionBlocks.compras"
+		   xmlns:sociedades="simplot.portalsprd.view.Autogestion.SectionBlocks.sociedades"
+		   xmlns:checklist="simplot.portalsprd.view.Autogestion.SectionBlocks.checklist"
+		   xmlns:adjuntos="simplot.portalsprd.view.Autogestion.SectionBlocks.adjuntos"
+		   xmlns:goals="simplot.portalsprd.view.Autogestion.SectionBlocks.goals"
+		   xmlns:personal="simplot.portalsprd.view.Autogestion.SectionBlocks.personal"
+		   xmlns:employment="simplot.portalsprd.view.Autogestion.SectionBlocks.employment"
+		   controllerName="simplot.portalsprd.controller.Autogestion.Autogestion"
+		   height="100%">
+	<ObjectPageLayout id="ObjectPageLayout"
+					  enableLazyLoading="false"
+					  showTitleInHeaderContent="true"
+					  showEditHeaderButton="true"
+					  editHeaderButtonPress="handleEditBtnPress">
+		<headerTitle>
+			<ObjectPageHeader objectImageURI="./images/OrgIcon.png"
+							  objectTitle="DEMO Proveedor"
+							  objectImageShape="Circle"
+							  objectImageAlt="DEMO Proveedor"
+							  objectSubtitle="Organizacion"
+
+							  isObjectIconAlwaysVisible="false"
+							  isObjectTitleAlwaysVisible="false"
+							  isObjectSubtitleAlwaysVisible="false">
+				
+				
+				
+			</ObjectPageHeader>
+		</headerTitle>
+
+		<headerContent>
+			<layout:VerticalLayout>
+				<m:Link text="55558888"/>
+				<m:Link text="demo@test.com"/>
+			</layout:VerticalLayout>
+			<m:HBox>
+				<m:Label class="bigLabel" text="Direccion"/>
+				<m:Label text="Calle DEMO 1313"/>
+			</m:HBox>
+			
+			<m:HBox>
+				<m:Label class="bigLabel" text="Agrupacion"/>
+				<m:Label text="Asignación de números interna (0001)"/>
+			</m:HBox>
+			
+			<m:HBox>
+				<m:Label class="bigLabel" text="Estado"/>
+				<m:HBox>
+					<m:Label text="Bloqueo Contabil.: "/>
+					<m:Label text=" "/>
+					<m:Label text=" No"/>
+				</m:HBox>
+				<m:HBox>
+					<m:Label text="Bloqueo de entrega: "/>
+					<m:Label text=" "/>
+					<m:Label text=" No"/>
+				</m:HBox>
+				
+				<m:HBox>
+					<m:Label text="Bloqueo de factura: "/>
+					<m:Text text=" "/>
+					<m:Label text=" No"/>
+				</m:HBox>
+			</m:HBox>
+<!--
+			<layout:VerticalLayout>
+				<m:Label text="San Jose, USA"/>
+			</layout:VerticalLayout>
+			-->
+		</headerContent>
+
+		<sections id="section">
+			<ObjectPageSection id="goalsSection" title="Datos Basicos">
+				<subSections id="subsectionGoal">
+					<ObjectPageSubSection id="goalsSectionSS1" title=" ">
+						<blocks>
+							<datos:DatosBasicosBlock id="goalsblock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			
+			<ObjectPageSection id="DireccionSection" title="Direccion" importance="Medium">
+				<subSections>
+					<ObjectPageSubSection  title="Direccion Estandar">
+						<blocks>
+							<direccion:DireccionEstBlock id="dirsSt"/>
+						</blocks>
+					</ObjectPageSubSection>
+
+					<ObjectPageSubSection title="Comunicacion Estandar">
+						<blocks>
+							<direccion:ComunicacionEstBlock />
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			
+			<ObjectPageSection id="cuentasSection" title="Cuentas Bancarias">
+				<subSections>
+					<ObjectPageSubSection id="cuentasSectionSS1" title=" ">
+						<blocks>
+							<cuentas:CuentasBlock id="cuentasblock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			
+			<ObjectPageSection id="comprasSection" title="Organizacion de Compras">
+				<subSections>
+					<ObjectPageSubSection id="comprasSectionSS1" title=" ">
+						<blocks>
+							<compras:ComprasBlock id="comprasblock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			
+			<ObjectPageSection id="sociedadesSection" title="Sociedades" importance="Medium">
+				<subSections>
+					<ObjectPageSubSection  title="Sociedades">
+						<blocks>
+							<sociedades:SociedadesBlock id="socSt"/>
+						</blocks>
+					</ObjectPageSubSection>
+
+					<ObjectPageSubSection title="Retenciones">
+						<blocks>
+							<sociedades:RetencionesBlock />
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			
+			<ObjectPageSection id="adjuntosSection" title="Adjuntos">
+				<subSections>
+					<ObjectPageSubSection id="adjuntosSectionSS1" title=" ">
+						<blocks>
+							<checklist:ChecksBlock/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+		<footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer />
+				<m:Button type="Accept" text="Accept"/>
+				<m:Button type="Reject" text="Reject"/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>

@@ -1,0 +1,1 @@
+(function(e,i){"use strict";if(typeof sap==="undefined"){if(typeof helper==="undefined"){e.helper={}}e.helper.promise=i()}else{sap.ui.define("simplot.portalsprd.utils.helper.promise",[],i,true)}})(this,function(){"use strict";return function(e){return function(i){return new Promise(function(n,t){e(i,n,t)})}}});

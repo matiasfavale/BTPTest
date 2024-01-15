@@ -1,0 +1,232 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
+    controllerName="simplot.portalsprd.controller.OC.OrdenCompra" xmlns:table="sap.ui.table"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<SplitApp id="idAppControl" initialDetail="detailDetailCargAsis" initialMaster="master" orientationChange=".onOrientationChange">
+		<masterPages width="26rem">
+			<Page  backgroundDesign="List" class="sapUiStdPage" showNavButton="true"
+		        navButtonPress="onNavBack">
+				<headerContent>			
+			        <Button press="onHideMaster" icon="{/iconExpand}" tooltip="{i18n>Expandir}" />			
+                </headerContent>
+                <subHeader>
+                    <Bar>                        
+                        <contentMiddle>
+                            <Button  icon="sap-icon://clear-filter" press="onCancelFilter" />
+                            <SearchField search="onSearch" showRefreshButton="false" tooltip="{i18n>masterSearchTooltip}"
+                                width="70%"></SearchField>
+                        </contentMiddle>
+                    </Bar> 
+                </subHeader>  
+                <content>
+                    <PullToRefresh refresh="onRefresh" visible="{device>/support/touch}"/>
+                    <!-- For client side filtering add this to the items attribute:  parameters: {operationMode: 'Client'}}" growingThreshold="10" -->
+                    <List  growing="false" growingScrollToLoad="false" headerText="{i18n>masterTitle}"
+                        items="{ path: '/rowsOrdenCompra', 
+                            parameters: {operationMode: 'Client'} }"
+                        mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" noDataText="{i18n>noDataOC}" 
+                        selectionChange="onSelectionOCChange"    updateFinished="onUpdateFinished">
+                        <!--
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <content>
+                                    <Button type="Success" icon="sap-icon://status-completed" tooltip="Completa" press="onPressSuccess" />
+                                    <Button type="Critical" icon="sap-icon://message-warning" press="onPressFilterFPend" />
+                                    <Button type="Emphasized" icon="sap-icon://status-inactive" press="onPressFilterMPend" />
+                                    <Button type="Reject" icon="sap-icon://sys-cancel" press="onPressFilterReject" />
+                                    <ToolbarSpacer />
+                                    <Button type="Default" icon="sap-icon://sort" press="onPressOrderDate" />
+                                </content>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        -->
+                        <items>
+                            <ObjectListItem press="onSelectionOCChange" title="{Ebeln}" type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}">
+                                <ObjectAttribute text="{Fecha}" />
+                                <firstStatus>
+                                    <ObjectStatus text="{Estado}" state="{InfoStatus}" />
+                                </firstStatus>
+                            </ObjectListItem>
+                        </items>
+                    </List>
+                </content>
+                <footer>
+                    <OverflowToolbar> 
+                        <content>
+                            <Button type="Success" icon="sap-icon://complete" press="onPressFilterCumpl" />
+                            <Button type="Critical" icon="sap-icon://product" press="onPressFilterFcPend" />
+                            <Button type="Emphasized" icon="sap-icon://shipping-status" press="onPressFilterParcial" />
+                            <Button type="Reject" icon="sap-icon://pending" press="onPressFilterRecePend" />
+                            <ToolbarSpacer />
+                            <Button type="Default" icon="sap-icon://sort" press="onPressOrderDate" />
+                        </content>
+                    </OverflowToolbar>
+                </footer>
+			</Page>
+		</masterPages>
+		<detailPages>
+			<Page visible="{/visibleDetail}" title="{DetailModel>/CursoDesc}" class="sapUiStdPage" backgroundDesign="Solid">
+				<ObjectHeader class="sapUiResponsivePadding--header"
+                    binding="{/rowsHeaderOC/0}"
+                    intro="{Fecha}"
+                    title="{Ebeln}"
+                    responsive="true"
+                    number="{
+                        parts:[{path:'Rlwrt'},{path:'Waers'}],
+                        type: 'sap.ui.model.type.Currency',
+                        formatOptions: {
+                            minIntegerDigits: 2, showMeasure: false
+                        }
+                    }"
+                    numberUnit="{Waers}" >
+                    <attributes>                     
+                        <ObjectAttribute title="{i18n>Sociedad}" text="{Bukrs}-{BukrsDesc}" />
+                        <ObjectAttribute title="{i18n>GrCompras}" text="{Ekgrp}-{EkgrpDesc}" />
+                        <ObjectAttribute title="{i18n>CreadoPor}" text="{Ernam}" />
+                        <ObjectAttribute title="{i18n>CondPago}" text="{Zterm}-{ZtermDesc}" />
+                        <ObjectAttribute title="{i18n>OrgCompra}" text="{Ekorg}" />
+                        <ObjectAttribute title="{i18n>ClDoc}" text="{BsartDesc}" />
+                        <ObjectAttribute title="{i18n>TCambio}" text="{parts:[{path:'Wkurs'}], formatter: '.formatter.formatterNum'}" />
+                        <ObjectAttribute title="{i18n>Moneda}" text="{Waers}" />
+                    </attributes>
+                </ObjectHeader>
+                <Button text="" type="Default" icon="sap-icon://pdf-attachment" press="onPressPDFOC" />
+				<content>
+                    <table:Table
+                        alternateRowColors="true"
+                        rows="{/rowsItemsOC}"
+                        class="sapUiSizeCompact"
+                        selectionMode="None" 
+                        visibleRowCount="{/rowsItemsOCMax}">
+                        
+                        <table:columns>
+                            
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                                hAlign="Center" >
+                                <table:label>
+                                    <Label  text="{i18n>Posicion}"  textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label  text="{Ebelp}"  textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+                            
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell" hAlign="Center" >
+                                <table:label>
+                                    <Label  text="{i18n>Material}"  textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label  text="{Matnr}"  textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+                            
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell" hAlign="Center" width="12rem">
+                                <table:label>
+                                    <Label  text="{i18n>Descripcion}"  textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label  text="{Txz01}"  textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+                            
+                            <!--
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell" hAlign="Center" >
+                                <table:label>
+                                    <Label  text="{i18n>Centro}"  textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label  text="{Werks}"  textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell" hAlign="Center" >
+                                <table:label>
+                                    <Label  text="{i18n>Almacen}"  textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label  text="{Lgort}" textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+                            -->
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell" hAlign="Center" >
+                                <table:label>
+                                    <Label  text="{i18n>Cantidad}"  textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label  text="{parts:[{path:'Menge'}], formatter: '.formatter.formatterNum'}" textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell" hAlign="Center" >
+                                <table:label>
+                                    <Label  text="{i18n>UnidadPedido}"  textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label  text="{Meins}"  textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+                            
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell" hAlign="Center" >
+                                <table:label>
+                                    <Label  text="{i18n>PrecioUnit}" textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label  text="{parts:[{path:'Netpr'}], formatter: '.formatter.formatterNum'}" textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell" hAlign="Center" >
+                                <table:label>
+                                    <Label  text="{i18n>Precio}"  textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label text="{parts:[{path:'Brtwr'}], formatter: '.formatter.formatterNum'}" textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell" hAlign="Center" >
+                                <table:label>
+                                    <Label  text="{i18n>FechaEntrega}"  textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label  text="{FechaEM}" textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell" hAlign="Center" >
+                                <table:label>
+                                    <Label  text="{i18n>Solicitante}" textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label  text="{Afnam}"  textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell" hAlign="Center" >
+                                <table:label>
+                                    <Label  text="{i18n>CantidadEM}" textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label  text="{parts:[{path:'CantEm'}], formatter: '.formatter.formatterNum'}" textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+
+                            <table:Column class = "sapUiTableHeaderRow sapUiTableCell" hAlign="Center" >
+                                <table:label>
+                                    <Label  text="{i18n>CantidadFC}"  textAlign="Center" />
+                                </table:label>
+                                <table:template   class = "sapUiTableHeaderRow sapUiTableCell">
+                                    <Label  text="{parts:[{path:'CantFc'}], formatter: '.formatter.formatterNum'}"  textAlign="Center" />
+                                </table:template>
+                            </table:Column>
+                        </table:columns>
+                    </table:Table>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</detailPages>
+	</SplitApp>
+</mvc:View>

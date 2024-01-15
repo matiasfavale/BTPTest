@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZBP_COMPRAS_SRV" sap:schema-version="1" xml:lang="en" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="OCListado" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Ebeln"/>
+				</Key>
+				<Property MaxLength="10" Name="IvLifnr" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="Ebeln" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="Bukrs" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="8" Name="Aedat" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="IdEstado" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="50" Name="Estado" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="OCItem" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Ebeln"/>
+				</Key>
+				<Property MaxLength="10" Name="IvEbeln" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="Ebeln" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="5" Name="Ebelp" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="Matnr" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="Txz01" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="Werks" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="Lgort" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="Menge" Nullable="false" Precision="13" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="Meins" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="Netpr" Nullable="false" Precision="12" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="Brtwr" Nullable="false" Precision="13" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="8" Name="Lewed" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="12" Name="Afnam" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="CantEm" Nullable="false" Precision="13" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="CantFc" Nullable="false" Precision="13" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="WerksDesc" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="16" Name="LgortDesc" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="OCPdf" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="IvEbeln"/>
+				</Key>
+				<Property MaxLength="10" Name="IvEbeln" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="220" Name="EvMensaje" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="EvPdf" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="EvTipo" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="OCCabecera" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Ebeln"/>
+				</Key>
+				<Property MaxLength="10" Name="IvEbeln" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="Ebeln" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="Bukrs" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="Bstyp" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="Bsart" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="8" Name="Aedat" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="12" Name="Ernam" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="Lifnr" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="Zterm" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="Ekorg" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="Ekgrp" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="5" Name="Waers" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:semantics="currency-code" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="Wkurs" Nullable="false" Precision="9" Scale="5" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="Rlwrt" Nullable="false" Precision="16" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="25" Name="BukrsDesc" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="20" Name="BsartDesc" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="ZtermDesc" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="20" Name="EkorgDesc" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="18" Name="EkgrpDesc" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityContainer Name="ZBP_COMPRAS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+				<EntitySet EntityType="ZBP_COMPRAS_SRV.OCListado" Name="OCListadoSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="ZBP_COMPRAS_SRV.OCItem" Name="OCItemSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="ZBP_COMPRAS_SRV.OCPdf" Name="OCPdfSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="ZBP_COMPRAS_SRV.OCCabecera" Name="OCCabeceraSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+			</EntityContainer>
+			<atom:link href="http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_COMPRAS_SRV/$metadata" rel="self" xmlns:atom="http://www.w3.org/2005/Atom"/>
+			<atom:link href="http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_COMPRAS_SRV/$metadata" rel="latest-version" xmlns:atom="http://www.w3.org/2005/Atom"/>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,42 @@
+<mvc:View height="100%"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	
+	<UploadCollection
+		id="id_uploadCollectionOtros"
+		uploadEnabled="true"
+		multiple="false"
+		change="onChangeOtros"
+		beforeUploadStarts="onBeforeUploadStartsOtros"
+		items="{ path: '/OtrosRow', templateShareable: false }">
+		<toolbar>
+			<OverflowToolbar >
+				<Title/>
+				<ToolbarSpacer />
+				<UploadCollectionToolbarPlaceholder />
+			</OverflowToolbar>
+		</toolbar>
+		<items>
+			<UploadCollectionItem
+				press="onPressDownloadAdjuntos"
+				documentId="{documentId}"
+				fileName="{fileName}"
+				mimeType="{mimeType}"
+				thumbnailUrl="{thumbnailUrl}"
+				visibleDelete="false"
+				visibleEdit="false"
+				url="{url}"
+				attributes="{ path: 'attributes', templateShareable: false }"
+				statuses="{ path: 'statuses', templateShareable: false }"
+				selected="{selected}">
+				<attributes>
+					<ObjectAttribute title="{title}" text="{ parts: ['text', 'type'] }" />
+				</attributes>
+				<statuses>
+					<ObjectStatus title="{title}" text="{text}" state="{state}" />
+				</statuses>
+			</UploadCollectionItem>
+		</items>
+	</UploadCollection>
+</mvc:View>

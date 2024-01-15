@@ -1,0 +1,59 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m"
+	xmlns:l="sap.ui.layout" xmlns="sap.ui.table" xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:forms="sap.ui.layout.form"
+	controllerName="simplot.portalsprd.controller.Autogestion.Autogestion"
+	xmlns:core="sap.ui.core">
+	<Table
+		rows="{/Checks}"
+		selectionMode="None"
+		visibleRowCount="9"
+		ariaLabelledBy="title">		
+		<columns>
+			<Column>
+				<m:Label text="" />
+				<template>
+					<m:Text text="{Value}" wrapping="false" />
+				</template>
+			</Column>
+			<Column width="10rem" hAlign="Center">
+				<m:Label text="Fecha emision" />
+				<template>
+					<m:HBox>
+					<m:DatePicker
+						id="DP1"
+						value= "{FechaIni}"
+						valueState ="{FechaState}"
+						change="handleChange"
+						class="sapUiSmallMarginBottom"/>
+					</m:HBox>
+				</template>
+			</Column>
+			<Column width="10rem" hAlign="Center">
+				<m:Label  text="Fecha fin validez" />
+				<template>
+					<m:HBox>
+					<m:DatePicker
+						id="DP2"
+						value= "{FechaFin}"
+						valueState ="{FechaState}"
+						change="handleChange"
+						class="sapUiSmallMarginBottom"/>
+					</m:HBox>
+				</template>
+			</Column>			
+			<Column width="8rem" hAlign="Center">
+				<m:Label text="Subir Archivo" />
+				<template>
+					<m:Button icon="sap-icon://upload" type="Default" press="onPress" />
+				</template>
+			</Column>
+			<Column width="8rem" hAlign="Center">
+				<m:Label text="Descargar Archivo" />
+				<template>
+					<m:Button icon="sap-icon://download" type="Default" press="onPressPDF" />
+				</template>
+			</Column>
+		</columns>
+	</Table>	
+</mvc:View>

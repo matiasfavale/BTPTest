@@ -1,0 +1,1 @@
+sap.ui.define(["simplot/portalsprd/controller/BaseController","simplot/portalsprd/model/Claim/formatter"],function(o,t){"use strict";return o.extend("simplot.portalsprd.controller.Claim.ConversationBlock",{formatter:t,onInit:function(){}})});

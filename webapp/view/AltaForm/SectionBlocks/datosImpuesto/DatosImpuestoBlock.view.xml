@@ -1,0 +1,36 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:forms="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" controllerName="simplot.portalsprd.controller.AltaForm.BlockCommon">
+    
+		<forms:SimpleForm
+			editable="false"
+			layout="ColumnLayout"
+			title=""
+			columnsM="2"
+			columnsL="2"
+			columnsXL="2">
+			<forms:content>
+				<core:Title text="{i18n>Impuestos}" />
+				<Label text="{i18n>IGA}" /> 
+                <ComboBox required="{/MaestroProveedores/Impuesto/Iga/Validar/Requerido}"  
+                    enabled="{/MaestroProveedores/Impuesto/Iga/Validar/Habilitado}" 
+                    selectedKey="{/MaestroProveedores/Impuesto/Iga/Texto}" 
+                    textAlign="Center"  items="{/rowsIVAIGA}" change="onChangePais">
+                    <core:Item key="{Codigo}" text="{Texto}" />
+                </ComboBox>
+				<Label text="{i18n>IVA}" />
+                <ComboBox required="{/MaestroProveedores/Impuesto/Iva/Validar/Requerido}" 
+                    enabled="{/MaestroProveedores/Impuesto/Iva/Validar/Habilitado}" 
+                    selectedKey="{/MaestroProveedores/Impuesto/Iva/Texto}" 
+                    textAlign="Center"  items="{/rowsIVAIGA}">
+                    <core:Item key="{Codigo}" text="{Texto}" />
+                </ComboBox>
+                <Label text="{i18n>IIBB}" />
+                <ComboBox required="{/MaestroProveedores/Impuesto/Iibb/Validar/Requerido}" 
+                    enabled="{/MaestroProveedores/Impuesto/Iibb/Validar/Habilitado}" 
+                    selectedKey="{/MaestroProveedores/Impuesto/Iibb/Texto}" 
+                    textAlign="Center"  items="{/rowsIIBB}">
+                    <core:Item key="{Codigo}" text="{Texto}" />
+                </ComboBox>
+			</forms:content>
+		</forms:SimpleForm>
+</mvc:View>

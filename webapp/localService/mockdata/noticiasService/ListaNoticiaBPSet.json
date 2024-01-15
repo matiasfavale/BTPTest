@@ -1,0 +1,72 @@
+[
+    {
+        "Codnot": "0000000006",
+        "Fecha": "20220325",
+        "Hora": "161900",
+        "IvBpSap": "",
+        "IvTipoBp": "",
+        "Titulo": "test2503",
+        "Visto": false,
+        "__metadata": {
+            "id": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_NOTICIAS_SRV/ListaNoticiaBPSet('0000000006')",
+            "type": "ZBP_NOTICIAS_SRV.ListaNoticiaBP",
+            "uri": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_NOTICIAS_SRV/ListaNoticiaBPSet('0000000006')"
+        }
+    },
+    {
+        "Codnot": "0000000010",
+        "Fecha": "20220408",
+        "Hora": "110619",
+        "IvBpSap": "",
+        "IvTipoBp": "",
+        "Titulo": "nuevo mensaje",
+        "Visto": true,
+        "__metadata": {
+            "id": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_NOTICIAS_SRV/ListaNoticiaBPSet('0000000010')",
+            "type": "ZBP_NOTICIAS_SRV.ListaNoticiaBP",
+            "uri": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_NOTICIAS_SRV/ListaNoticiaBPSet('0000000010')"
+        }
+    },
+    {
+        "Codnot": "0000000002",
+        "Fecha": "20220324",
+        "Hora": "175840",
+        "IvBpSap": "",
+        "IvTipoBp": "",
+        "Titulo": "testmf",
+        "Visto": false,
+        "__metadata": {
+            "id": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_NOTICIAS_SRV/ListaNoticiaBPSet('0000000002')",
+            "type": "ZBP_NOTICIAS_SRV.ListaNoticiaBP",
+            "uri": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_NOTICIAS_SRV/ListaNoticiaBPSet('0000000002')"
+        }
+    },
+    {
+        "Codnot": "0000000008",
+        "Fecha": "20220407",
+        "Hora": "164953",
+        "IvBpSap": "",
+        "IvTipoBp": "",
+        "Titulo": "Hola",
+        "Visto": false,
+        "__metadata": {
+            "id": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_NOTICIAS_SRV/ListaNoticiaBPSet('0000000008')",
+            "type": "ZBP_NOTICIAS_SRV.ListaNoticiaBP",
+            "uri": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_NOTICIAS_SRV/ListaNoticiaBPSet('0000000008')"
+        }
+    },
+    {
+        "Codnot": "0000000009",
+        "Fecha": "20220407",
+        "Hora": "172750",
+        "IvBpSap": "",
+        "IvTipoBp": "",
+        "Titulo": "Otro",
+        "Visto": true,
+        "__metadata": {
+            "id": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_NOTICIAS_SRV/ListaNoticiaBPSet('0000000009')",
+            "type": "ZBP_NOTICIAS_SRV.ListaNoticiaBP",
+            "uri": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_NOTICIAS_SRV/ListaNoticiaBPSet('0000000009')"
+        }
+    }
+]

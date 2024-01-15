@@ -1,0 +1,460 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns:table="sap.ui.table"
+    xmlns="sap.m" 
+    xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+    controllerName="simplot.portalsprd.controller.Facturas.Facturas"
+    height="100%">
+    <Page backgroundDesign="List" class="sapUiStdPage" showNavButton="true"
+		navButtonPress="onNavBack" visible="true">
+          
+		<content>
+            <Panel expandable="true" expanded="true"  headerText="{i18n>Adjunto}" width="auto" 
+                class="sapUiResponsiveMargin" accessibleRole="Region">
+            
+                <f:Form id="idFormDocs" editable="true">
+                    <f:title>
+                        <core:Title text="" />
+                    </f:title>
+                    <f:layout>
+                        <f:ResponsiveGridLayout
+                            labelSpanXL="4"
+                            labelSpanL="4"
+                            labelSpanM="12"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="0"
+                            emptySpanL="0"
+                            emptySpanM="0"
+                            emptySpanS="0"
+                            columnsXL="2"
+                            columnsL="2"
+                            columnsM="2"
+                            singleContainerFullSize="false" />
+                    </f:layout>
+                    <f:formContainers>
+                        <f:FormContainer>
+                            <f:formElements>
+                                <f:FormElement  visible="true">
+                                    <f:label>
+                                        <Label text="{i18n>TipoDocumento}" required="true"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <Select
+                                            change="onChangeTipoDoc"
+                                            forceSelection="false"
+                                            selectedKey="{/Combos/comboTipoFactura/selectKey}"
+                                            items="{ path: '/Combos/comboTipoFactura/rowTemplate' }">
+                                            <core:Item key="{key}" text="{value}" />
+                                        </Select>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement visible="true">
+                                    <f:label>
+                                        <Label text="{i18n>SubtipoDoc}" required="true"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <Select
+                                            forceSelection="false"
+                                            selectedKey="{/Combos/comboSubtipoFactura/selectKey}"
+                                            items="{ path: '/Combos/comboSubtipoFactura/rowTemplate' }">
+                                            <core:Item key="{SubtipoDoc}" text="{Texto}" />
+                                        </Select>
+                                    </f:fields>
+                                </f:FormElement>                          
+                                <f:FormElement visible="true">
+                                    <f:label>
+                                        <Label text="{i18n>Adjunto}" required="true"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <u:FileUploader width="100%"
+                                            id="myFileUploadFact"
+                                            name="myFileUploadFact"
+                                            uploadComplete="handleUploadComplete"
+                                            useMultipart="false"
+                                            change="onFileUpload"/>
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+
+                        <f:FormContainer>
+                            <f:formElements>                                
+                                <f:FormElement>
+                                    <f:label>
+                                        <Label text="{i18n>Adjunto}" required="true"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <Select
+                                            forceSelection="false"
+                                            selectedKey="{/ComboTemplate/selectKey}"
+                                            items="{ path: '/ComboTemplate/rowTemplate' }">
+                                            <core:Item key="{template}" text="{name}" />
+                                        </Select>
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+                    </f:formContainers>
+                </f:Form>
+                <HBox>
+                    <Toolbar>
+                        <ToolbarSpacer/>
+                        <Button
+                            type="Accept"
+                            text="{i18n>EscanearArchivo}"
+                            press="onSendFile" />
+                    </Toolbar>
+                </HBox>
+                
+            </Panel>
+
+            <Panel expandable="true" expanded="{/Expanded}"  headerText="{i18n>DatosCabecera}" width="auto" 
+                class="sapUiResponsiveMargin" accessibleRole="Region">
+                <f:Form id="idFormHeader" editable="true">
+                    <f:layout>
+                        <f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" 
+                            adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" 
+                            columnsXL="3" columnsL="3" columnsM="1" singleContainerFullSize="false"/>
+                    </f:layout>
+                    <f:formContainers>
+                        <f:FormContainer>
+                            <f:formElements>
+                                <f:FormElement>
+                                    <f:label>
+                                        <Label text="{i18n>Empresa}" required="true"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <Select
+                                            forceSelection="false"
+                                            selectedKey="{/Combos/comboSociedad/selectKey}"
+                                            items="{ path: '/Combos/comboSociedad/rowTemplate' }">
+                                            <core:Item key="{Codigo}" text="{Texto}" />
+                                        </Select>
+                                        <!--
+                                        <Input value="{/headerFields/cliente}"/>
+                                        -->
+                                    </f:fields>
+                                </f:FormElement> 
+                                <f:FormElement>
+                                    <f:label>
+                                        <Label text="{i18n>NroFactura}" required="true"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <Input placeholder="12345A12345678" value="{/headerFields/nroFactura}"/>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement>
+                                    <f:label>
+                                        <Label text="{i18n>FechaDoc}" required="true"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <DatePicker id="fechaDoc"
+                                            placeholder="DD/MM/YYYY" value="{/headerFields/fecha}"
+                                            displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" class="sapUiSmallMarginBottom"/>
+                                        
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement visible="true">
+                                    <f:label>
+                                        <Label text="{i18n>Circuito}" required="true"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <Select
+                                            change = "onChangeCircuito"
+                                            enabled = "{/Combos/comboCircuito/habilitado}"
+                                            forceSelection="false"
+                                            selectedKey="{/Combos/comboCircuito/selectKey}"
+                                            items="{ path: '/Combos/comboCircuito/rowTemplate' }">
+                                            <core:Item key="{key}" text="{value}" />
+                                        </Select>
+                                    </f:fields>
+                                </f:FormElement>
+
+                                <f:FormElement>
+                                    <f:label>
+                                        <Label text="{i18n>OrdenCompra}" required="{/comboOrdenCompra/required}"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <Input value="{/comboOrdenCompra/selectKey}" showValueHelp="true" 
+                                            valueHelpRequest="onValueHelpOCs" valueHelpOnly="true"
+                                            enabled = "{/comboOrdenCompra/habilitado}"/>
+                                        <!--
+                                        <Select
+                                            enabled = "{/comboOrdenCompra/habilitado}"
+                                            showSecondaryValues= "true"
+                                            forceSelection="false"
+                                            selectedKey="{/comboOrdenCompra/selectKey}"
+                                            items="{ path: '/comboOrdenCompra/rowTemplate' }">
+                                            <core:ListItem key="{Ebeln}" text="{Ebeln}" additionalText= "{SaldoFact} {Moneda}" />
+                                        </Select>
+                                        -->
+                                        <!--
+                                        <Input value="{/headerFields/nroPedido}"/>
+                                        -->
+                                    </f:fields>
+                                </f:FormElement>
+                                
+                            </f:formElements>
+                        </f:FormContainer>
+                        <f:FormContainer>
+                            <f:formElements>
+                                <f:FormElement  visible="true">
+                                    <f:label>
+                                        <Label text="{i18n>Moneda}" required="true"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <Select
+                                            change="onChangeComboMoneda"
+                                            forceSelection="false"
+                                            selectedKey="{/Combos/comboMoneda/selectKey}"
+                                            items="{ path: '/Combos/comboMoneda/rowTemplate' }">
+                                            <core:Item key="{key}" text="{value}" />
+                                        </Select>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement  visible="true">
+                                    <f:label>
+                                        <Label text="{i18n>Total}" required="true"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <Input id="inpFieldsTotal" value="{/headerFields/total}"   />
+                                    </f:fields>
+                                </f:FormElement>
+                                <!-- liveChange="liveNumberDecimal"-->
+                                <f:FormElement  visible="true">
+                                    <f:label>
+                                        <Label text="{i18n>Subtotal}" required="true"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <Input id="inpFieldsSubTotal" value="{/headerFields/subtotal}"   />
+                                    </f:fields>
+                                </f:FormElement>
+                                <!-- liveChange="liveNumberDecimal"-->
+                                <f:FormElement visible="true">
+                                    <f:label>
+                                        <Label text="{i18n>TCambio}" required="true"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <Input id="inpFieldsTC" value="{/headerFields/tipoCambio}"   />
+                                    </f:fields>
+                                </f:FormElement>
+                                <!-- liveChange="liveNumberDecimal"-->
+                            </f:formElements>
+                        </f:FormContainer>
+                        <f:FormContainer>
+                            <f:formElements> 
+                                <f:FormElement label="{i18n>Modo}">
+                                    <f:fields>
+                                        <Select
+                                            forceSelection="false"
+                                            selectedKey="{/Combos/comboModo/selectKey}"
+                                            items="{ path: '/Combos/comboModo/rowTemplate' }">
+                                            <core:Item key="{key}" text="{value}" />
+                                        </Select>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="{i18n>CAE}" visible="true">
+                                    <f:fields>
+                                        <Input value="{/headerFields/cae}"/>
+                                    </f:fields>
+                                </f:FormElement>
+                                                               
+                                <f:FormElement label="{i18n>CaeVence}">
+                                    <f:fields>
+                                        <DatePicker id="fechaVto" 
+                                            placeholder="DD/MM/YYYY" value="{/headerFields/fechaVto}"
+                                            displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" class="sapUiSmallMarginBottom"/>
+                                        
+                                    </f:fields>
+                                </f:FormElement> 
+                                
+                                <f:FormElement label="{i18n>Observacion}" visible="true">
+                                    <f:fields>
+                                        <TextArea rows="2"  growing="true" value="{/headerFields/NotaProveedor}"/>
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+                        
+                    </f:formContainers>
+                </f:Form>   
+
+                <Panel expandable="true" expanded="false"  headerText="{i18n>ImpuestoIVA}" width="auto" 
+                    class="sapUiResponsiveMargin" accessibleRole="Region">
+                    <table:Table alternateRowColors="true" rows="{/ivaItems}" class="sapUiSizeCompact" 
+                        selectionMode="None" visibleRowCount="{/ivaItemsMax}">
+                        
+                        <table:extension>
+                            <OverflowToolbar>
+                                <ToolbarSpacer/>
+                                <Button icon="sap-icon://add" press="onAddIva"/>
+                            </OverflowToolbar>
+                        </table:extension>
+                        
+                        <table:columns >
+                            <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                                <table:label>
+                                    <Label text="{i18n>Descripcion}" textAlign="Center"/>
+                                </table:label>
+                                <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                    <ComboBox value="{Item}" items="{/Combos/ComboIVA}">
+                                        <core:Item text="{value}"/>
+                                    </ComboBox>
+                                    <!--
+                                    <Input value="{Item}" textAlign="Center"/>
+                                    -->
+                                </table:template>
+                            </table:Column>
+                            <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                                <table:label>
+                                    <Label text="{i18n>Importe}" textAlign="Center"/>
+                                </table:label>
+                                <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                    <Input value="{Valor}" textAlign="Center" liveChange="liveNumberDecimal"/>
+                                </table:template>
+                            </table:Column>
+                            <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                                <table:label>
+                                    <Label text="{i18n>Quitar}" textAlign="Center"/>
+                                </table:label>
+                                <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                    <Button icon="sap-icon://delete" press="onDeleteIva"/>
+                                </table:template>
+                            </table:Column>
+                        </table:columns>
+                    </table:Table>  
+                </Panel>
+
+                <Panel expandable="true" expanded="false"  headerText="{i18n>ImpuestoIIBB}" width="auto" 
+                    class="sapUiResponsiveMargin" accessibleRole="Region">
+                    <table:Table alternateRowColors="true" rows="{/iibbItems}" class="sapUiSizeCompact" 
+                        selectionMode="None" visibleRowCount="{/iibbItemsMax}">
+                        
+                        <table:extension>
+                            <OverflowToolbar>
+                                <ToolbarSpacer/>
+                                <Button icon="sap-icon://add" press="onAddIibb"/>
+                            </OverflowToolbar>
+                        </table:extension>
+                        <table:columns >
+                            <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                                <table:label>
+                                    <Label text="{i18n>Descripcion}" textAlign="Center"/>
+                                </table:label>
+                                <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                    <ComboBox value="{Item}" items="{/Combos/ComboIIBB}">
+                                        <core:Item text="{value}"/>
+                                    </ComboBox>
+                                    <!--
+                                    <Select
+                                        forceSelection="false"
+                                        items="{ path: '/ComboIIBB' }">
+                                        <core:Item key="{key}" text="{key}" />
+                                    </Select>
+                                    
+                                    <Input value="{Item}" textAlign="Center"/>
+                                    -->
+                                </table:template>
+                            </table:Column>
+                            <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                                <table:label>
+                                    <Label text="{i18n>Importe}" textAlign="Center"/>
+                                </table:label>
+                                <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                    <Input value="{Valor}" textAlign="Center" liveChange="liveNumberDecimal"/>
+                                </table:template>
+                            </table:Column>
+                            <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                                <table:label>
+                                    <Label text="{i18n>Quitar}" textAlign="Center"/>
+                                </table:label>
+                                <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                    <Button icon="sap-icon://delete" press="onDeleteIibb"/>
+                                </table:template>
+                            </table:Column>
+                        </table:columns>
+                    </table:Table>  
+                </Panel>
+                <Panel>
+                    <PDFViewer visible="{/PDFViewer/isVisibile}" class="sapUiSmallMarginBegin" source="{/PDFViewer/SourcePDF}"  height="500px">
+                        
+                    </PDFViewer>
+                </Panel>
+            </Panel>
+
+            <Panel visible="false" expandable="true" expanded="false"  headerText="{i18n>DatosItems}" width="auto" 
+                class="sapUiResponsiveMargin" accessibleRole="Region">
+                <table:Table alternateRowColors="true" rows="{/lineItems}" class="sapUiSizeCompact" 
+                    selectionMode="None" visibleRowCount="{/lineItemsMax}">
+                    <table:extension>
+                        <OverflowToolbar>
+                            <ToolbarSpacer/>
+                            <Button icon="sap-icon://add" press="onAddItemsDetail"/>
+                        </OverflowToolbar>
+                    </table:extension>
+                    <table:columns >
+                        <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                            <table:label>
+                                <Label text="{i18n>Descripcion}" textAlign="Center"/>
+                            </table:label>
+                            <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                <Input value="{descripcion}" textAlign="Center"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                            <table:label>
+                                <Label text="{i18n>Cantidad}" textAlign="Center"/>
+                            </table:label>
+                            <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                <Input value="{cantidad}" textAlign="Center"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                            <table:label>
+                                <Label text="{i18n>PrecioUnit}" textAlign="Center"/>
+                            </table:label>
+                            <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                <Input value="{precioUnit}" textAlign="Center"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                            <table:label>
+                                <Label text="{i18n>PrecioTotal}" textAlign="Center"/>
+                            </table:label>
+                            <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                <Input value="{precioTotal}" textAlign="Center"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                            <table:label>
+                                <Label text="{i18n>Pagina}" textAlign="Center"/>
+                            </table:label>
+                            <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                <Input value="{page}" textAlign="Center"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                            <table:label>
+                                <Label text="{i18n>Quitar}" textAlign="Center"/>
+                            </table:label>
+                            <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                <Button icon="sap-icon://delete" press="onDeleteItemsDetail"/>
+                            </table:template>
+                        </table:Column>
+                    </table:columns>
+                </table:Table>  
+            </Panel>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+                <Button
+                    type="Accept"
+                    text="{i18n>Enviar}"
+                    press="onSendToSap" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/model/resource/ResourceModel"],function(e){"use strict";return{resourceModel:null,getResourceModel:function(){if(!this.resourceModel){this.resourceModel=new e({bundleName:"simplot.portalsprd.i18n.i18n",supportedLocales:[""],fallbackLocale:""})}return this.resourceModel},getResourceBundle:function(){return this.getResourceModel().getResourceBundle()}}});
