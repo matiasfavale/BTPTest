@@ -1,0 +1,74 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns:layout="sap.ui.layout"
+    xmlns:table="sap.ui.table"
+    xmlns="sap.m" 
+    controllerName="simplot.portalsprd.controller.Pizarron.Pizarron"
+    height="100%">
+    <Page backgroundDesign="List" class="sapUiStdPage" showNavButton="true"
+		navButtonPress="onNavBack" visible="true">
+          
+		<content>
+            <Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+            
+                <table:Table
+                    alternateRowColors="true"
+                    rows="{/rowsPizarron}"
+                    class="sapUiSizeCompact"
+                    selectionMode="None" 
+                    visibleRowCount="{/rowsPizarronCount}">
+                    <table:extension>
+                        <OverflowToolbar>
+                            <Title text="{i18n>Noticias}"/>
+                            <ToolbarSpacer/>
+                            <SearchField search="onSearch" liveChange="onSearch" showRefreshButton="false" 
+                                tooltip="{i18n>masterSearchTooltip}"
+                                width="30%" value="{/valueSearch}"/>
+                        </OverflowToolbar>
+                    </table:extension>
+                    <table:columns>
+                        <table:Column width="7rem" class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center"  tooltip="{i18n>Fecha}">
+                            <table:label>
+                                <Label  text="{i18n>Fecha}" textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <Label text="{Fecha}" textAlign="Center" design="{styleReadLabel}"/>
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column width="7rem" class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center"  tooltip="{i18n>Hora}">
+                            <table:label>
+                                <Label  text="{i18n>Hora}" textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <Label text="{Hora}" textAlign="Center" design="{styleReadLabel}"/>
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column  class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center"  tooltip="{i18n>Titulo}">
+                            <table:label>
+                                <Label  text="{i18n>Titulo}" textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <Label text="{Titulo}" textAlign="Center" design="{styleReadLabel}" />
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column width="5rem" class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center"  tooltip="{i18n>Ver}">
+                            <table:label>
+                                <Label  text="{i18n>Ver}" textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <Button press="onViewNoticia" type="{styleReadBtn}" icon="sap-icon://show" />
+                            </table:template>
+                        </table:Column>
+                    </table:columns>
+                </table:Table>
+            </Panel>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

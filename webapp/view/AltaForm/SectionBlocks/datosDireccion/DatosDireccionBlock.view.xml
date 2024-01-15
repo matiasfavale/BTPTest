@@ -1,0 +1,44 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:forms="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" controllerName="simplot.portalsprd.controller.AltaForm.BlockCommon">
+    
+		<forms:SimpleForm
+			editable="false"
+			layout="ColumnLayout"
+			title=""
+			columnsM="2"
+			columnsL="2"
+			columnsXL="2">
+			<forms:content>
+				<core:Title text="{i18n>Direccion}" />
+				<Label text="{i18n>Pais}" /> 
+                <ComboBox required="{/MaestroProveedores/Direccion/Pais/Validar/Requerido}"  
+                    enabled="{/MaestroProveedores/Direccion/Pais/Validar/Habilitado}" 
+                    selectedKey="{/MaestroProveedores/Direccion/Pais/Texto}" 
+                    textAlign="Center"  items="{/Paises}" change="onChangePais">
+                    <core:Item key="{Codigo}" text="{Texto}" />
+                </ComboBox>
+				<Label text="{i18n>Provincia}" />
+                <ComboBox required="{/MaestroProveedores/Direccion/Provincia/Validar/Requerido}" 
+                    enabled="{/HabilitaPcia}" selectedKey="{/MaestroProveedores/Direccion/Provincia/Texto}" 
+                    textAlign="Center"  items="{/Provincias}">
+                    <core:Item key="{Codigo}" text="{Texto}" />
+                </ComboBox>
+                <Label text="{i18n>CP}" />
+				<Input required="{/MaestroProveedores/Direccion/CP/Validar/Requerido}" 
+                    enabled="{/MaestroProveedores/Direccion/CP/Validar/Habilitado}" 
+                    value="{/MaestroProveedores/Direccion/CP/Texto}" />
+				<Label text="{i18n>Ciudad}" />
+				<Input required="{/MaestroProveedores/Direccion/Ciudad/Validar/Requerido}" 
+                    enabled="{/MaestroProveedores/Direccion/Ciudad/Validar/Habilitado}" 
+                    value="{/MaestroProveedores/Direccion/Ciudad/Texto}" />
+				<Label text="{i18n>Calle} " />
+				<Input required="{/MaestroProveedores/Direccion/Calle/Validar/Requerido}" 
+                    enabled="{/MaestroProveedores/Direccion/Calle/Validar/Habilitado}" 
+                    value="{/MaestroProveedores/Direccion/Calle/Texto}" />
+                <Label text="{i18n>NroCalle}" />
+				<Input required="{/MaestroProveedores/Direccion/Nrocalle/Validar/Requerido}" 
+                    enabled="{/MaestroProveedores/Direccion/Nrocalle/Validar/Habilitado}" 
+                    value="{/MaestroProveedores/Direccion/Nrocalle/Texto}" />
+			</forms:content>
+		</forms:SimpleForm>
+</mvc:View>

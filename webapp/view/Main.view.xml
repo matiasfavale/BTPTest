@@ -1,0 +1,121 @@
+<mvc:View  controllerName="simplot.portalsprd.controller.Main" xmlns:microchart="sap.suite.ui.microchart"
+	xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap">
+	<uxap:ObjectPageLayout>
+		<uxap:sections>
+        
+			<uxap:ObjectPageSection visible="{/UserEnabled}" titleUppercase="false" title="{i18n>Vision}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>Vision}" titleUppercase="false">
+						<uxap:blocks>
+							<HBox>								
+								<SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" transitionTime="250" displayTime="2500">
+									<GenericTile header="{i18n>OrdenCompra}" subheader="{i18n>DescCumplida}" scope="Display" press="onPressOCCumplida">
+										<TileContent>
+											<NumericContent value="{/OC/CountCumplida}" valueColor="Good" icon="sap-icon://complete" withMargin="false"/>
+										</TileContent> 
+									</GenericTile>
+									<GenericTile header="{i18n>OrdenCompra}" subheader="{i18n>DescRecepParcial}" scope="Display" press="onPressOCRecepParcial">
+										<TileContent unit="" footer="">
+											<NumericContent value="{/OC/CountRecepParcial}" valueColor="Critical" icon="sap-icon://product" withMargin="false"/>
+										</TileContent>
+									</GenericTile>
+								</SlideTile>
+								
+								
+								<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>EstadoCta}" scope="Display" press="onPressCtaCte">
+									<TileContent unit="" footer="">
+										<NumericContent value=" "  icon="sap-icon://lead" withMargin="false"/>
+									</TileContent>
+								</GenericTile>
+								
+								<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>Reclamos}" subheader="" busyIndicatorDelay="0" scope="Display" press=".onPressReclamos">
+									<TileContent unit="" footer="">
+										<microchart:ComparisonMicroChart size="S" class="sapUiSmallMargin" shrinkable="true" minValue="0">
+											<microchart:data>
+												<microchart:ComparisonMicroChartData title="{i18n>claim.status.new}" value="{/Reclamos/CountNew}" color="Good"/>
+												<microchart:ComparisonMicroChartData title="{i18n>claim.status.inProcess}" value="{/Reclamos/CountInProcess}" color="Critical"/>
+											</microchart:data>
+										</microchart:ComparisonMicroChart>
+										<!-- <NumericContent value="10" valueColor="Error" icon="sap-icon://activity-2" withMargin="false"/> -->
+									</TileContent>
+								</GenericTile>
+
+
+                                <SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" transitionTime="250" displayTime="2500">
+									<GenericTile header="{i18n>Documentacion}" subheader="{i18n>Vencidas}" scope="Display" press="onPressAltaForm">
+										<TileContent>
+											<NumericContent value="{/Documentacion/CountVencidas}" valueColor="Error" icon="sap-icon://documents" withMargin="false"/>
+										</TileContent> 
+									</GenericTile>
+									<GenericTile header="{i18n>Documentacion}" subheader="{i18n>Pendientes}" scope="Display" press="onPressAltaForm">
+										<TileContent unit="" footer="">
+											<NumericContent value="{/Documentacion/CountPendientes}" valueColor="Critical" icon="sap-icon://documents" withMargin="false"/>
+										</TileContent>
+									</GenericTile>
+								</SlideTile>
+
+                                <GenericTile scope="Display"  class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>Pizarron}" subheader="" press="onPressPizarron">
+									<TileContent  unit="" footer="">
+										<NumericContent  value="{/Pizarron/CountNoticias}" valueColor="Critical" icon="sap-icon://newspaper" withMargin="false"/>
+									</TileContent>
+								</GenericTile>
+								
+							</HBox>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+				
+			<uxap:ObjectPageSection visible="{/UserEnabled}" titleUppercase="false" title="{i18n>ProcesoCompras}" >
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>ProcesoCompras}" titleUppercase="false">
+						<uxap:blocks>
+							<HBox>
+								<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"  header="{i18n>OrdenCompra}" press="onPressOC">
+									<TileContent>
+										<NumericContent value=" " icon="sap-icon://time-account" withMargin="false" />
+									</TileContent>
+								</GenericTile>
+								
+								<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>LoadFacturas}" scope="Display" press="onPressFacturas">
+									<TileContent>
+										<NumericContent value=" " icon="sap-icon://expense-report" withMargin="false"/>
+									</TileContent>
+								</GenericTile>
+
+                                <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>ListFacturas}" scope="Display" press="onPressViewFacturas">
+									<TileContent>
+										<NumericContent value=" " icon="sap-icon://inspection" withMargin="false"/>
+									</TileContent>
+								</GenericTile>
+							</HBox>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+				
+			<uxap:ObjectPageSection visible="{/UserEnabled}" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" titleUppercase="false" title="{i18n>BusinessPartner}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>BusinessPartner}" titleUppercase="false">
+						<uxap:blocks>
+							<HBox>
+								<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"  header="{i18n>FormAlta}" press="onPressAltaForm">
+									<TileContent unit="" footer="">
+										<NumericContent value=" " icon="sap-icon://create-form" withMargin="false" />
+									</TileContent>
+								</GenericTile>
+								
+								<GenericTile visible="false" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"  header="{i18n>Autogestion}" press="onPressAutogestion">
+									<TileContent unit="" footer="">
+										<NumericContent value=" " icon="sap-icon://customer" withMargin="false" />
+									</TileContent>
+								</GenericTile>
+							</HBox>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>			
+		</uxap:sections>
+	</uxap:ObjectPageLayout>	
+</mvc:View>
+

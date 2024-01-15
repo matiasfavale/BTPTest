@@ -1,0 +1,68 @@
+<mvc:View controllerName="simplot.portalsprd.controller.Claim.InformationBlock" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:rich="sap.ui.richtexteditor">
+    <VBox id="informationVBox">
+    <f:Form id="claim-form" editable="true">
+        <f:layout>
+            <f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+                emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="true"/>
+        </f:layout>
+        <f:formContainers>
+            <f:FormContainer>
+                <f:formElements>
+                    <f:FormElement label="{i18n>claim.title.label}">
+                        <f:fields>
+                            <VBox>
+                                <Input name="title" value="{Titulo}" maxLength="50" visible="{= ${Nrorec} === '0000000000'}"/>
+                                <Text text="{Titulo}" visible="{= ${Nrorec} !== '0000000000'}"/>
+                            </VBox>
+                        </f:fields>
+                    </f:FormElement>
+                </f:formElements>
+            </f:FormContainer>
+            <f:FormContainer>
+                <f:formElements>
+                    <f:FormElement label="{i18n>claim.reason.label}">
+                        <f:fields>
+                            <ComboBox items="{matchcodes>/Reasons}" selectedKey="{Motivo}" editable="{= ${Nrorec} === '0000000000'}">
+                                <core:Item key="{matchcodes>Motivo}" text="{matchcodes>Texto}"/>
+                            </ComboBox>
+                        </f:fields>
+                    </f:FormElement>
+                </f:formElements>
+            </f:FormContainer>
+            <f:FormContainer>
+                <f:formElements>
+                    <f:FormElement label="{i18n>claim.priority.label}">
+                        <f:fields>
+                            <ComboBox items="{matchcode>/Prioridades}" selectedKey="{Prioridad}" editable="{= ${Estado} !== '3'}">
+                                <core:Item key="{matchcode>id}" text="{matchcode>descripcion}"/>
+                            </ComboBox>
+                        </f:fields>
+                    </f:FormElement>
+                </f:formElements>
+            </f:FormContainer>
+        </f:formContainers>
+    </f:Form>
+    <f:Form id="claim-text-form" editable="true" visible="{= ${Estado} !== '3'}">
+        <f:layout>
+            <f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+                emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="true"/>
+        </f:layout>
+        <f:formContainers>
+            <f:FormContainer>
+                <f:formElements>
+                    <f:FormElement label="{i18n>claim.message.label}">
+                        <f:fields>
+                            <TextArea value="{IvCuerpo}" growing="true" growingMaxLines="7" rows="4" placeholder="{i18n>claim.message.placeholder}"></TextArea>
+                        </f:fields>
+                    </f:FormElement>
+                </f:formElements>
+            </f:FormContainer>
+        </f:formContainers>
+    </f:Form>
+    <!-- <Label text="{i18n>claim.message.label}" class="sapUiSmallMarginBeginEnd" /> -->
+    <!-- <rich:RichTextEditor customToolbar="false" showGroupFont="false" showGroupFontStyle="false"
+                showGroupLink="false" showGroupInsert="false" showGroupClipboard="false" value="{IvCuerpo}"
+                showGroupTextAlign="false" showGroupStructure="false" width="100%" class="sapUiSmallMarginBeginEnd"/> -->
+    </VBox>
+</mvc:View>

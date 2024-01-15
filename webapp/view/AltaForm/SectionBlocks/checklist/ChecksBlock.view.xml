@@ -1,0 +1,46 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m"
+	xmlns:l="sap.ui.layout" xmlns="sap.ui.table" xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core" 
+	xmlns:forms="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	controllerName="simplot.portalsprd.controller.AltaForm.BlockCommon">
+    
+	<Table    
+		rows="{/MaestroProveedores/Archivos}"
+		selectionMode="None"
+		visibleRowCount="{/MaestroProveedores/maxArchivos}"
+		ariaLabelledBy="title">
+		<columns>
+			<Column>
+				<m:Label text="{i18n>Descripcion}" />
+				<template>
+					<m:Text text="{Tipo}" wrapping="false" />
+				</template>
+			</Column>
+			<Column width="10rem" hAlign="Center">
+				<m:Label  text="{i18n>FechaVence}" />
+				<template>
+					<m:Text text="{FechaVence}" wrapping="false" />
+				</template>
+			</Column>
+			<Column width="8rem" hAlign="Center">
+				<m:Label text="{i18n>Obligatorio}" />
+				<template>
+					<m:CheckBox enabled="false" text="" selected="{Obliga}" />
+				</template>
+			</Column>
+			<Column width="8rem" hAlign="Center">
+				<m:Label text="{i18n>SubirArchivo}" />
+				<template>
+					<m:Button enabled="{/MaestroProveedores/Habilitado/boolHabilitado}" icon="sap-icon://upload" type="Default" press="onPressUpFile" />
+				</template>
+			</Column>
+			<Column width="8rem" hAlign="Center">
+				<m:Label text="{i18n>DescargarArchivo}" />
+				<template>
+					<m:Button visible="{IsLoad}" icon="sap-icon://download" type="Default" press="onPressDownFile" />
+				</template>
+			</Column>
+		</columns>
+	</Table>	
+</mvc:View>

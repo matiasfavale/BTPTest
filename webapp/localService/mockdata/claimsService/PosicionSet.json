@@ -1,0 +1,17 @@
+[
+    {
+        "Autor": "1",
+        "Cuerpo": "<p>Otra prueba</p>",
+        "Fecha": "20220502",
+        "Hora": "141802",
+        "IvNrorec": "0000000000",
+        "Nrorec": "0000000003",
+        "Posrec": "001",
+        "Usuario": "",
+        "__metadata": {
+            "id": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_RECLAMOS_SRV/PosicionSet(Nrorec='0000000003',Posrec='001')",
+            "type": "ZBP_RECLAMOS_SRV.Posicion",
+            "uri": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_RECLAMOS_SRV/PosicionSet(Nrorec='0000000003',Posrec='001')"
+        }
+    }
+]

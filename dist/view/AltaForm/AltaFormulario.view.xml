@@ -1,0 +1,119 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.uxap"
+    xmlns:layout="sap.ui.layout"
+    xmlns:m="sap.m" 
+    xmlns:datosBasicos="simplot.portalsprd.view.AltaForm.SectionBlocks.datosBasicos"
+    xmlns:datosDireccion="simplot.portalsprd.view.AltaForm.SectionBlocks.datosDireccion"
+    xmlns:datosBanco="simplot.portalsprd.view.AltaForm.SectionBlocks.datosBanco"
+    xmlns:datosImpuesto="simplot.portalsprd.view.AltaForm.SectionBlocks.datosImpuesto"
+    xmlns:checklist="simplot.portalsprd.view.AltaForm.SectionBlocks.checklist"
+    controllerName="simplot.portalsprd.controller.AltaForm.AltaFormulario"
+    height="100%">
+    <m:Page  backgroundDesign="List" class="sapUiStdPage" showNavButton="true"
+		navButtonPress="onNavBack">
+
+        <ObjectPageLayout  id="ObjectPageLayout"
+		  showFooter="true"
+		  enableLazyLoading="false"
+		  showTitleInHeaderContent="true"
+		  showEditHeaderButton="false"
+		  editHeaderButtonPress="handleEditBtnPress">
+            <headerTitle>
+                <ObjectPageHeader objectImageURI="./images/OrgIcon.png"
+                    objectTitle="{i18n>FrmAltaProv}"
+                    objectImageShape="Circle"
+                    isObjectIconAlwaysVisible="false"
+                    isObjectTitleAlwaysVisible="false"
+                    isObjectSubtitleAlwaysVisible="false">
+                    <actions>
+                        <m:Button press="onPressEditAlta" visible="{/MaestroProveedores/Habilitado/boolBtnModifica}" text="Modificar" type="Transparent" icon="sap-icon://edit" tooltip="Modificar"/>
+                        <!--
+                        <m:OverflowToolbarButton press="onPressEditAlta" visible="{/MaestroProveedores/Habilitado/boolBtnModifica}" text="Modificar" type="Transparent" icon="sap-icon://edit" tooltip="Modificar"/>
+                        -->
+                    </actions>
+                </ObjectPageHeader>
+                
+            </headerTitle>
+
+            <headerContent>
+                <layout:VerticalLayout>
+                    <m:Label text="{i18n>Fecha}"/>
+                    <m:Label text="08.10.2020"/>
+                </layout:VerticalLayout> 
+                <m:ObjectStatus title="{i18n>Estado}" text="{/MaestroProveedores/Estado/Descripcion}" 
+                    state="{/MaestroProveedores/Estado/State}"/>
+                
+            </headerContent>
+            
+            <sections>
+                <ObjectPageSection title="{i18n>DatosBasicos}">
+                    <subSections>
+                        <ObjectPageSubSection title="">
+                            <blocks>
+                                <datosBasicos:DatosBasicosBlock/>
+                            </blocks>
+                        </ObjectPageSubSection>
+                        
+                    </subSections>
+                </ObjectPageSection>
+                
+                <ObjectPageSection title="{i18n>Direccion}">
+                    <subSections>
+                        <ObjectPageSubSection title="">
+                            <blocks>
+                                <datosDireccion:DatosDireccionBlock/>
+                            </blocks>
+                        </ObjectPageSubSection>
+                        
+                    </subSections>
+                </ObjectPageSection>
+                
+                <ObjectPageSection title="{i18n>DatosBancarios}">
+                    <subSections>
+                        <ObjectPageSubSection title="">
+                            <blocks>
+                                <datosBanco:DatosBancoBlock/>
+                            </blocks>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+
+                <ObjectPageSection title="{i18n>Impuestos}">
+                    <subSections>
+                        <ObjectPageSubSection title="">
+                            <blocks>
+                                <datosImpuesto:DatosImpuestoBlock/>
+                            </blocks>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+
+                <ObjectPageSection title="{i18n>Adjuntos}">
+                    <subSections>
+                        <ObjectPageSubSection title="">
+                            <blocks>
+                                <checklist:ChecksBlock/>
+                            </blocks>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+            </sections>
+            <footer>
+            
+                <m:OverflowToolbar>
+                    <m:ToolbarSpacer />
+                    <!-- visible="{/MaestroProveedores/Habilitado/boolBtnSave}"  -->
+                    <m:Button visible="{/MaestroProveedores/Habilitado/boolBtnSave}" press="onSave" type="Accept" text="{i18n>Grabar}">
+                        <m:layoutData><m:OverflowToolbarLayoutData priority="NeverOverflow" /></m:layoutData>
+                    </m:Button>
+                    <m:Button visible="{/MaestroProveedores/Habilitado/boolBtnSend}" press="onRequest" type="Emphasized" text="{i18n>EnviarSol}">
+                        <m:layoutData><m:OverflowToolbarLayoutData priority="NeverOverflow" /></m:layoutData>
+                    </m:Button>
+                    <m:Button visible="{/MaestroProveedores/Habilitado/boolBtnCancel}" press="onPressCancelAlta" type="Reject" text="{i18n>Cancelar}">
+                        <m:layoutData><m:OverflowToolbarLayoutData priority="NeverOverflow" /></m:layoutData>
+                    </m:Button>
+                </m:OverflowToolbar>
+            </footer>
+        </ObjectPageLayout>
+    </m:Page>	
+</mvc:View>

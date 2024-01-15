@@ -1,0 +1,18 @@
+[
+    {
+        "BpPortal": "0000000020",
+        "BpSap": "100826",
+        "EvMensaje": "",
+        "EvTipo": "S",
+        "GrupoBp": "2",
+        "IvUsuario": "MATIAS.FAVALE@HOTMAIL.COM.AR",
+        "NrSap": "100717",
+        "TipoBp": "P",
+        "Usuario": "MATIAS.FAVALE@HOTMAIL.COM.AR",
+        "__metadata": {
+            "id": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_AUTOGESTION_SRV/UsuarioPortalSet('MATIAS.FAVALE%40HOTMAIL.COM.AR')",
+            "type": "ZBP_AUTOGESTION_SRV.UsuarioPortal",
+            "uri": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_AUTOGESTION_SRV/UsuarioPortalSet('MATIAS.FAVALE%40HOTMAIL.COM.AR')"
+        }
+    }
+]

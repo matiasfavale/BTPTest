@@ -1,0 +1,190 @@
+<core:FragmentDefinition  xmlns:core="sap.ui.core" xmlns:table="sap.ui.table" xmlns="sap.m"
+    xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"   >
+	<Dialog title="{/titleTable}" contentWidth="100%" contentHeight="97%" >
+		<content>
+			<Panel>
+				<content>
+                
+                    <ObjectHeader class="sapUiSizeCompact"
+                        condensed="true"
+                        title="{/DetailFactura/Factura/Numero}"
+                        responsive="true">
+                        <attributes>
+                            <ObjectAttribute title="{i18n>TipoDocumento}" text="{/DetailFactura/Factura/TipoDocValue}" />
+                            <ObjectAttribute title="{i18n>SubtipoDoc}" text="{/DetailFactura/Factura/SubtipoDocValue}" />
+                        </attributes>
+                    </ObjectHeader>
+                
+				</content>
+			</Panel>
+            <Panel>
+                <content>
+                    <IconTabBar class="sapUiResponsiveContentPadding">
+                        <items>
+                            <IconTabFilter icon="sap-icon://detail-view" text="Detalle"
+                                tooltip="Detalle" key="Detalle"  >
+                                <content>
+                                    
+                                    <f:Form editable="true">
+                                        <f:layout>
+                                            <f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" 
+                                                adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" 
+                                                columnsXL="3" columnsL="3" columnsM="1" singleContainerFullSize="false"/>
+                                        </f:layout>
+                                        <f:formContainers>
+                                            <f:FormContainer>
+                                                <f:formElements>
+                                                    <f:FormElement label="{i18n>Empresa}">
+                                                        <f:fields>
+                                                            <Text text= "{/DetailFactura/Factura/SociedadValue}"/>
+                                                        </f:fields>
+                                                    </f:FormElement> 
+                                                    <f:FormElement label="{i18n>FechaDoc}">
+                                                        <f:fields>
+                                                            <Text text= "{/DetailFactura/Factura/FechaDoc}"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="{i18n>Circuito}" visible="true">
+                                                        <f:fields>
+                                                            <Text text= "{/DetailFactura/Factura/CircuitoValue}"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="{i18n>OrdenCompra}">
+                                                        <f:fields>
+                                                            <Text text= "{/DetailFactura/Factura/NumOc}"/>
+                                                        </f:fields>
+                                                    </f:FormElement>                                                        
+                                                </f:formElements>
+                                            </f:FormContainer>
+                                            <f:FormContainer>
+                                                <f:formElements>
+                                                    <f:FormElement label="{i18n>Moneda}" visible="true">
+                                                        <f:fields>
+                                                            <Text text= "{/DetailFactura/Factura/Moneda}"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="{i18n>Subtotal}" visible="true">
+                                                        <f:fields>
+                                                            <Text text= "{/DetailFactura/Factura/ImpNeto}"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="{i18n>Total}" visible="true">
+                                                        <f:fields>
+                                                            <Text text= "{/DetailFactura/Factura/ImpBruto}"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="{i18n>TCambio}" visible="true">
+                                                        <f:fields>
+                                                            <Text text= "{/DetailFactura/Factura/TipoCambio}"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                </f:formElements>
+                                            </f:FormContainer>
+                                            <f:FormContainer>
+                                                <f:formElements> 
+                                                    <f:FormElement label="{i18n>Modo}">
+                                                        <f:fields>
+                                                            <Text text= "{/DetailFactura/Factura/ModoValue}"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="{i18n>CAE}" visible="true">
+                                                        <f:fields>
+                                                            <Text text= "{/DetailFactura/Factura/Cae}"/>
+                                                        </f:fields>
+                                                    </f:FormElement>                                                                                    
+                                                    <f:FormElement label="{i18n>CaeVence}">
+                                                        <f:fields>
+                                                            <Text text= "{/DetailFactura/Factura/CaeVenc}"/>
+                                                        </f:fields>
+                                                    </f:FormElement>                                                        
+                                                    <f:FormElement label="{i18n>Observacion}" visible="true">
+                                                        <f:fields>
+                                                            <TextArea enabled="false" rows="4" value="{/DetailFactura/Factura/NotaProveedor}"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                </f:formElements>
+                                            </f:FormContainer>                                                
+                                        </f:formContainers>
+                                    </f:Form>   
+
+                                    <Panel expandable="true" expanded="false"  headerText="{i18n>ImpuestoIVA}" width="auto" 
+                                        class="sapUiResponsiveMargin" accessibleRole="Region">
+                                        <table:Table alternateRowColors="true" rows="{/DetailFactura/Factura/IvaTable}" class="sapUiSizeCompact" 
+                                            selectionMode="None" visibleRowCount="{/DetailFactura/Factura/IvaTableMax}">
+                                            <table:columns >
+                                                <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                                                    <table:label>
+                                                        <Label text="{i18n>Descripcion}" textAlign="Center"/>
+                                                    </table:label>
+                                                    <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                                        <Text text= "{item}"/>
+                                                    </table:template>
+                                                </table:Column>
+                                                <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                                                    <table:label>
+                                                        <Label text="{i18n>Importe}" textAlign="Center"/>
+                                                    </table:label>
+                                                    <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                                        <Text text= "{value}"/>
+                                                    </table:template>
+                                                </table:Column>
+                                            </table:columns>
+                                        </table:Table>  
+                                    </Panel>
+
+                                    <Panel expandable="true" expanded="false"  headerText="{i18n>ImpuestoIIBB}" width="auto" 
+                                        class="sapUiResponsiveMargin" accessibleRole="Region">
+                                        <table:Table alternateRowColors="true" rows="{/DetailFactura/Factura/PercepcionesTable}" class="sapUiSizeCompact" 
+                                            selectionMode="None" visibleRowCount="{/DetailFactura/Factura/PercepcionesTableMax}">
+                                            <table:columns >
+                                                <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                                                    <table:label>
+                                                        <Label text="{i18n>Descripcion}" textAlign="Center"/>
+                                                    </table:label>
+                                                    <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                                        <Text text= "{item}"/>
+                                                    </table:template>
+                                                </table:Column>
+                                                <table:Column class="sapUiTableHeaderRow sapUiTableCell" hAlign="Center" tooltip="">
+                                                    <table:label>
+                                                        <Label text="{i18n>Importe}" textAlign="Center"/>
+                                                    </table:label>
+                                                    <table:template class="sapUiTableHeaderRow sapUiTableCell">
+                                                        <Text text= "{value}"/>
+                                                    </table:template>
+                                                </table:Column>
+                                            </table:columns>
+                                        </table:Table>  
+                                    </Panel>
+                                </content>
+                            </IconTabFilter>
+                            <IconTabFilter
+                                icon="sap-icon://pdf-attachment"
+                                text="{i18n>Adjunto}"
+                                tooltip="{i18n>Adjunto}"
+                                key="Adjunto" >
+                                <content>
+                                    <FlexBox direction="Column" renderType="Div" class="sapUiSmallMargin">                        
+                                        <PDFViewer visible="{/DetailFactura/PDFViewerDetail/isVisibile}" class="sapUiSmallMarginBegin" source="{/DetailFactura/PDFViewerDetail/SourcePDF}" width="80%"  height="500px">
+                                            <layoutData>
+                                                <FlexItemData growFactor="1" />
+                                            </layoutData>
+                                        </PDFViewer>
+                                    </FlexBox>
+                                </content>
+                            </IconTabFilter>
+                        </items>
+                    </IconTabBar>
+
+                </content>
+            </Panel>
+		</content>
+		<endButton>
+			<Button
+				type="Reject"
+				text="{i18n>Cerrar}"
+				press="onPressCancel" />
+		</endButton>
+	</Dialog>
+	
+</core:FragmentDefinition>

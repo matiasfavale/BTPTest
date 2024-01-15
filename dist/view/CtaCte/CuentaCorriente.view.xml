@@ -1,0 +1,324 @@
+<mvc:View
+	controllerName="simplot.portalsprd.controller.CtaCte.CuentaCorriente"
+	xmlns="sap.suite.ui.commons"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:t="sap.suite.ui.commons.taccount"
+	xmlns:m="sap.m"
+	xmlns:table="sap.ui.table"
+    xmlns:forms="sap.ui.layout.form"
+	height="100%">
+
+	<m:Page title="{i18n>EstadoCuentaAl} {/HeaderCtaCte/tileFecha}" backgroundDesign="List" class="sapUiStdPage" 
+        showNavButton="true" navButtonPress="onNavBack">
+        <m:ObjectHeader class="sapUiResponsivePadding--header"
+            binding="{/HeaderCtaCte}"
+            title="{Nombre}"
+            responsive="true">				
+        </m:ObjectHeader>
+        
+        <m:Panel expandable="true" expanded="false" headerText="{i18n>Filtros}" width="auto" class="sapUiResponsiveMargin">
+            <m:content>
+                <forms:SimpleForm
+                    editable="false"
+                    layout="ColumnLayout"
+                    title=""
+                    columnsM="2"
+                    columnsL="2"
+                    columnsXL="2">
+                    <forms:content>
+                        <m:Label text="{i18n>TipoComprobante}" />
+                        <m:MultiComboBox
+                            selectionFinish="handleFiltroComprobante"
+                            items="{path: '/Filtros/rowsComprobante'}"
+                            selectedKeys="{/Filtros/selectComprobante}">
+                            <core:ListItem key="{Id}" text="{Name}" />
+                        </m:MultiComboBox>
+
+                        <m:Label text="{i18n>Estado}" />
+                        <m:MultiComboBox
+                            selectionFinish="handleFiltroEstado"
+                            items="{path: '/Filtros/rowsEstado'}"
+                            selectedKeys="{/Filtros/selectEstado}">
+                            <core:ListItem key="{Id}" text="{Name}" />
+                        </m:MultiComboBox>
+                        
+                        <m:Label text="{i18n>FechaEmision}" />
+                        <m:DateRangeSelection
+                            valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy"
+                            dateValue="{path:'/Filtros/dateValueOne'}"
+                            secondDateValue="{path:'/Filtros/dateValueTwo'}"
+                            change="handleChange"
+                        />                    				
+                    </forms:content>
+                </forms:SimpleForm>
+                <m:OverflowToolbar>
+                        <m:Button press="onPressFilter" icon="sap-icon://filter" />
+                        <m:Button press="onClearFilter" icon="sap-icon://clear-filter"/>
+                </m:OverflowToolbar>
+            </m:content>
+        </m:Panel>
+
+		<m:content>
+			<!--
+				number="{
+					parts:[{path:'PrecioTot'},{path:'Moneda'}],
+					type: 'sap.ui.model.type.Currency',
+					formatOptions: {showMeasure: false}
+				}"
+				numberUnit="{Moneda}" 
+                -->
+            <m:Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+                
+            
+                <table:Table
+                    alternateRowColors="true"
+                    rows="{/rowsCtaCte}"
+                    class="sapUiSizeCompact"
+                    selectionMode="None" 
+                    visibleRowCount="{/rowsCtaCteCount}">
+                    <table:extension>
+                        <m:OverflowToolbar>
+                            <m:Title text="{i18n>Comprobantes} ({/rowsCtaCteRealCount})"/>
+                            <m:ToolbarSpacer/>
+                            <m:SearchField search="onSearch" liveChange="onSearch" showRefreshButton="false" 
+                                placeholder="{i18n>NroLegal}"
+                                width="30%" value="{/valueSearch}"/>
+                        </m:OverflowToolbar>
+                    </table:extension>
+                    <table:columns>
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="4rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>Ver}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Button type="Default" icon="sap-icon://show" press="onViewCtaCte" />
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="4rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>Estado}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <core:Icon
+                                    src="{StatusIcon}"
+                                    class="size1"
+                                    color="{StatusColor}" 
+                                    visible="{StatusVisible}">
+                                    <core:layoutData>
+                                        <m:FlexItemData growFactor="1" />
+                                    </core:layoutData>
+                                </core:Icon>
+                            </table:template>
+                        </table:Column>
+                        
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="12rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>Empresa}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{Empresa}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="9rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>TipoDocumento}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{TipoDoc}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="9rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>NroLegal}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{NroLegal}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="8rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>FechaEmision}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{FechaEmi}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>                    
+                        
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="8rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>FechaContable}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{FechaCont}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="8rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>FechaVence}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{FechaVenc}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>
+                        
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="9rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>Importe}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{Importe}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="5rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>Moneda}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{Moneda}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="10rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>OrdenCompra}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{OcDoc}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="10rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>ReferenciaFactura}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{RefFac}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="10rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>ViaPago}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{ViaPago}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>
+
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="8rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>Asignacion}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{Asignacion}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>
+
+                        
+                        <table:Column class = "sapUiTableHeaderRow sapUiTableCell"
+                            hAlign="Center" width="10rem">
+                            <table:label>
+                                <m:Label 
+                                    text="{i18n>TextoPosicion}" 
+                                    textAlign="Center" />
+                            </table:label>
+                            <table:template  class = "sapUiTableHeaderRow sapUiTableCell">
+                                <m:Label
+                                    visible="true"
+                                    text="{TextoPos}"
+                                    textAlign="Center" />
+                            </table:template>
+                        </table:Column>
+                    </table:columns>
+                    
+                </table:Table>
+            </m:Panel>
+			
+		</m:content>
+	</m:Page>
+</mvc:View>

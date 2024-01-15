@@ -1,0 +1,18 @@
+[
+    {
+        "Archivo": "0000000020_P_ADJ03.pdf",
+        "ArchivoOrig": "testpdf.pdf",
+        "BpPortal": "0000000020",
+        "CodAdj": "ADJ03",
+        "IvBpPortal": "0000000000",
+        "IvTipoBp": "",
+        "Ruta": "/PORTALPROV/",
+        "TipoBp": "P",
+        "Vencimiento": "20220408",
+        "__metadata": {
+            "id": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_AUTOGESTION_SRV/ListaAdjSet(BpPortal='0000000020',TipoBp='P',CodAdj='ADJ03')",
+            "type": "ZBP_AUTOGESTION_SRV.ListaAdj",
+            "uri": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_AUTOGESTION_SRV/ListaAdjSet(BpPortal='0000000020',TipoBp='P',CodAdj='ADJ03')"
+        }
+    }
+]

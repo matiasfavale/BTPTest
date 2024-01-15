@@ -1,0 +1,391 @@
+{
+    "_version": "1.17.0",
+    "sap.app": {
+        "id": "simplot.portalsprd",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "ocrService": {
+                "uri": "document-information-extraction/v1/schemas?clientId=simplotId",
+                "type": "JSON"
+            },
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZBP_COMPRAS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "autogestionService": {
+                "uri": "/sap/opu/odata/sap/ZBP_AUTOGESTION_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/Autogestion/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "noticiasService": {
+                "uri": "/sap/opu/odata/sap/ZBP_NOTICIAS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/Pizarron/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "claimsService": {
+                "uri": "/sap/opu/odata/sap/ZBP_RECLAMOS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/Claim/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "cuentaCteService": {
+                "uri": "/sap/opu/odata/sap/ZBP_CTACTE_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "facturaService": {
+                "uri": "/sap/opu/odata/sap/ZBP_FACTURAS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "generalService": {
+                "uri": "/sap/opu/odata/sap/ZBP_GENERAL_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "afipService": {
+                "uri": "/sap/opu/odata/sap/ZBP_AFIP_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_belize",
+            "sap_hcb",
+            "sap_fiori_3",
+            "sap_bluecrystal"
+        ]
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.96.27",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.uxap":{},
+                "sap.suite.ui.microchart":{},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "ocr": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "ocrService",
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false
+                }
+            },
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "simplot.portalsprd.i18n.i18n"
+                }
+            },
+            "device": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {
+                    "defaultBindingMode": "OneWay"
+                }
+            },
+            "ORDEN_COMPRA": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "AUTOGESTION": {
+                "dataSource": "autogestionService",
+                "preload": true,
+                "settings": {}
+            },
+            "NOTICIAS": {
+                "dataSource": "noticiasService",
+                "preload": true,
+                "settings": {}                
+            },
+            "CUENTACTE":{
+                "dataSource": "cuentaCteService",
+                "preload": true,
+                "settings": {} 
+            },
+            "CUENTACTE_ES":{
+                "dataSource": "cuentaCteService",
+                "preload": true,
+                "settings": {
+                    "json": true,
+                    "odataVersion": "2.0",
+                    "metadataUrlParams": {
+                        "sap-language": "es"
+                    }
+                }
+            },
+            "claims": {
+                "dataSource": "claimsService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "None"
+                }
+            },
+            "FACTURA":{
+                "dataSource": "facturaService",
+                "preload": true,
+                "settings": {} 
+            },
+            "GENERAL":{
+                "dataSource": "generalService",
+                "preload": true,
+                "settings": {} 
+            },
+            "AFIP":{
+                "dataSource": "afipService",
+                "preload": true,
+                "settings": {} 
+            }
+            
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "simplot.portalsprd.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteMain",
+                    "pattern": "RouteMain",
+                    "target": [
+                        "TargetMain"
+                    ]
+                },
+                {
+                    "name": "main",
+                    "pattern": "main",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "main"
+                    ]
+                },
+                {
+                    "name": "ordenCompra",
+                    "pattern": "ordenCompra",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "ordenCompra"
+                    ]
+                },
+                {
+                    "name": "altaform",
+                    "pattern": "altaform",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "altaform"
+                    ]
+                },
+                {
+                    "name": "pizarron",
+                    "pattern": "pizarron",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "pizarron"
+                    ]
+                },
+                {
+                    "name": "claims",
+                    "pattern": "claims",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "claims"
+                    ]
+                },
+                {
+                    "name": "claim",
+                    "pattern": "claim/:nrorec:",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "claim"
+                    ]
+                },
+                {
+                    "name": "pizarron",
+                    "pattern": "pizarron",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "pizarron"
+                    ]
+                },
+                {
+					"name": "facturas",
+					"pattern": "facturas",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"facturas"
+					]
+				},
+                {
+					"name": "facturasview",
+					"pattern": "facturasview",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"facturasview"
+					]
+				},
+                {
+					"name": "cuentacorriente",
+					"pattern": "cuentacorriente",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"cuentacorriente"
+					]
+				}
+            ],
+            "targets": {
+                "TargetMain": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Main",
+                    "viewName": "Main"
+                },
+                "ordenCompra": {
+                    "viewType": "XML",
+                    "viewName": "OrdenCompra",
+                    "viewPath": "simplot.portalsprd.view.OC"
+                },
+                "altaform": {
+                    "viewType": "XML",
+                    "viewName": "AltaFormulario",
+                    "viewPath": "simplot.portalsprd.view.AltaForm"
+                },
+                "main": {
+                    "viewType": "XML",
+                    "viewName": "Main",
+                    "viewPath": "simplot.portalsprd.view"
+                },
+                "pizarron": {
+                    "viewType": "XML",
+                    "viewName": "Pizarron",
+                    "viewPath": "simplot.portalsprd.view.Pizarron"
+                },
+                "claims": {
+                    "viewId": "claims",
+                    "viewType": "XML",
+                    "viewName": "Claims",
+                    "viewPath": "simplot.portalsprd.view.Claim"
+                },
+                "claim": {
+                    "viewId": "claim",
+                    "viewType": "XML",
+                    "viewName": "Claim",
+                    "viewPath": "simplot.portalsprd.view.Claim"
+                },
+                "facturas": {
+                    "viewType": "XML",
+                    "viewName": "Facturas",
+                    "viewPath": "simplot.portalsprd.view.Facturas"
+                },
+                "facturasview": {
+                    "viewType": "XML",
+                    "viewName": "FacturasView",
+                    "viewPath": "simplot.portalsprd.view.Facturas"
+                },
+                "cuentacorriente": {
+                    "viewType": "XML",
+                    "viewName": "CuentaCorriente",
+                    "viewPath": "simplot.portalsprd.view.CtaCte"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "simplot.portalsprd.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "simplot-portalsprd"
+    }
+}

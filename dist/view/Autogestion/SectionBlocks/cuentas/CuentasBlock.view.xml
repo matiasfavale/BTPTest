@@ -1,0 +1,53 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:forms="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Table
+		items="{path: '/MaestroProveedores/0/Cuentas'}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Products" level="H2"/>
+				<ToolbarSpacer/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Identificacion" />
+			</Column>
+			<Column>
+				<Text text="Pais del banco" />
+			</Column>
+			<Column>
+				<Text text="Banco" />
+			</Column>
+			<Column>
+				<Text text="Nro. de Cuenta" />
+			</Column>
+			<Column>
+				<Text text="Clave de Banco" />
+			</Column>
+			<Column>
+				<Text text="Incion de Validez" />
+			</Column>
+			<Column>
+				<Text text="Fin de Validez" />
+			</Column>
+
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle" type="Navigation">
+				<cells>
+					<Text text="{ID}" wrapping="false" />
+					<Text text="{PaisBanco}" wrapping="false"/>
+					<Text text="{Banco}" />
+					<Text text="{NroCuenta}" />
+					<Text text="{ClaveBanco}" />
+					<Text text="{IniValidez}" />
+					<Text text="{FinValidez}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	
+	
+</mvc:View>

@@ -1,0 +1,28 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:forms="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+		<forms:SimpleForm
+			editable="false"
+			layout="ColumnLayout"
+			title=""
+			columnsM="2"
+			columnsL="3"
+			columnsXL="3">
+			<forms:content>
+				<core:Title text="Comunicacion Estandar" />
+				<Label text="Idioma" />
+				<Text text="{/MaestroProveedores/0/ComIdioma}" />
+				<Label text="Pais del telefono movil" />
+				<Text text="{/MaestroProveedores/0/ComPaisMovil}" />
+				<Label text="Telefono movil" />
+				<Text text="{/MaestroProveedores/0/ComMovil}" />
+				<Label text="Pais del telefono" />
+				<Text text="{/MaestroProveedores/0/ComPaisTelefono}" />
+				<Label text="Telefono" />
+				<Text text="{/MaestroProveedores/0/ComTelefono}" />
+				<Label text="Correo" />
+				<Text text="{/MaestroProveedores/0/ComCorreo}" />
+			</forms:content>
+		</forms:SimpleForm>
+</mvc:View>

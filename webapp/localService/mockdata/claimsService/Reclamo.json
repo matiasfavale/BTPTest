@@ -1,0 +1,15 @@
+{
+    "Estado": "1",
+    "Fecha": "20220426",
+    "Hora": "180029",
+    "Motivo": "MOTIVO1",
+    "Nrorec": "0000000002",
+    "Prioridad": "1",
+    "Titulo": "Prueba 2",
+    "BpSap": "0000100826",
+    "__metadata": {
+        "id": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_RECLAMOS_SRV/ReclamoSet('0000000002')",
+        "type": "ZBP_RECLAMOS_SRV.Reclamo",
+        "uri": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_RECLAMOS_SRV/ReclamoSet('0000000002')"
+    }
+}

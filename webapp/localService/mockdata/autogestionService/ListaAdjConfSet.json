@@ -1,0 +1,26 @@
+[
+    {
+        "CodAdj": "ADJ03",
+        "DescAdj": "Estatuto",
+        "IvGrupoBp": "",
+        "IvTipoBp": "",
+        "TipoAdj": "M",
+        "__metadata": {
+            "id": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_AUTOGESTION_SRV/ListaAdjConfSet('ADJ03')",
+            "type": "ZBP_AUTOGESTION_SRV.ListaAdjConf",
+            "uri": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_AUTOGESTION_SRV/ListaAdjConfSet('ADJ03')"
+        }
+    },
+    {
+        "CodAdj": "ADJ06",
+        "DescAdj": "Prueba adjunto EXTERIOR",
+        "IvGrupoBp": "",
+        "IvTipoBp": "",
+        "TipoAdj": "M",
+        "__metadata": {
+            "id": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_AUTOGESTION_SRV/ListaAdjConfSet('ADJ06')",
+            "type": "ZBP_AUTOGESTION_SRV.ListaAdjConf",
+            "uri": "http://18.213.172.54:8000/sap/opu/odata/sap/ZBP_AUTOGESTION_SRV/ListaAdjConfSet('ADJ06')"
+        }
+    }
+]
